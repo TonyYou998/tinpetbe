@@ -1,0 +1,192 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div>
+        <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
+            <a href="/" style="text-decoration: none; color: black;">
+            <h1 class="logo">
+              TINPETS
+            </h1>
+            </a>
+      
+      
+            <div class=" navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav m-auto">
+                  <a href="" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+      
+                      About us
+                    </li>
+                  </a>
+               
+                <a href="/find"  style="text-decoration: none; color: black;">
+                <li class="nav-item mx-4">
+                  Find a pet
+                </li>
+                </a>
+      
+                <a href="/breed"  style="text-decoration: none; color: black;">
+                <li class="nav-item mx-4">
+                  Breeds
+                </li>
+                </a>
+                <a href="/give"  style="text-decoration: none; color: black;">
+                <li class="nav-item mx-4">
+                  Give your pet
+                </li>
+                </a>
+      
+      
+      
+              </ul>
+      
+              <i class="mr-3  fa fa-shopping-cart "></i>
+              
+              {% if user.is_authenticated %}
+                
+                  <i class="mr-1 fa fa-user"></i>
+                  <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+                  <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
+                
+                <!-- <a href="/logout">logout</a> -->
+              {% else %}
+              <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+                SIGN IN
+              </a>
+              <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+                SIGN UP
+              </a>   
+              {% endif %}
+             
+            </div>
+          </nav>
+        <div class="findapet__wrapper ">
+            <h3 class="text-center">Browse all pet </h3>
+          <div class="container">
+            <div class="row">
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog1.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog2.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog3.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog4.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog7.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog6.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog7.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog6.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+                <div class="item__wrapper col-3 pt-3">
+                    <img class="item__img w-100" src="{% static 'img/dog1.jpg' %}" alt=""/>
+                    <div class="item__content">
+                        <Link to="/detail/id">
+                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
+                        </Link>
+                       
+                        
+                    </div>
+                </div>
+
+              
+            </div>
+          </div>
+        </div>
+    </div>  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(window).scroll(()=>{
+        if($(window).scrollTop()>100){
+            $(".navbar").addClass("navbar__change");
+        }
+        else{
+            $(".navbar__change").removeClass("navbar__change");
+        }
+        })  
+      </script>
+  </body>
+</html>
