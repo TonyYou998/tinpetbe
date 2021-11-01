@@ -42,6 +42,7 @@ def login(request):
         user=auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request,user)
+           
             return redirect('/')
         else:
             messages.info(request,'Username or Password are incrorect')
@@ -65,6 +66,13 @@ def give(request):
         if form.is_valid():
             form.save()
             obj=form.instance
+            # gán name
+            user=request.user
+            name=user.username
+            
+          
+            obj.owner=name
+            obj.save()
             messages.info(request,'upload success')
             return redirect('give')
         else:
