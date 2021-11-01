@@ -9,6 +9,7 @@ urlpatterns=[
     path('logout',views.logout,name='logout'),
     path('find',views.find,name="find"),
     path('breed',views.breed,name='breed'),
-    path('give',views.give,name='give')
+    path('give',views.give,name='give'),
+    
 
 ]

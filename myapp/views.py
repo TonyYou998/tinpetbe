@@ -1,7 +1,10 @@
+from django import forms
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, request
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
+from .form import PetForm
+from .models import Pet
 # Create your views here.
 
 def index(request):
@@ -49,10 +52,25 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 def find(request):
-    return render(request,'find.html')
+    pet=Pet.objects.all().filter(purpose='G')
+
+    return render(request,'find.html',{'pets':pet})
 def breed(request):
     return render(request,'breed.html')
 
 
 def give(request):
-    return render(request,'give.html')
+    if request.method=="POST":
+        form=PetForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            obj=form.instance
+            messages.info(request,'upload success')
+            return redirect('give')
+        else:
+            messages.info(request,'upload failed')
+            return redirect('give')
+    else:
+        form=PetForm()
+        # pet=Pet.objects.all()
+        return render(request,'give.html',{'form':form})

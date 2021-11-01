@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
+    <style>
+      input{
+        width: 100%;
+      }
+  </style>
     <div>
         <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
             <a href="/" style="text-decoration: none; color: black;">
@@ -74,7 +79,7 @@
         </nav>
         <div class="upload__pet">
             <div class="upload__container">
-                <form>
+                <!-- <form>
                     <div class="form-group py-2">
                       <label htmlFor="exampleInputEmail1">Pet's name</label>
                       <input
@@ -83,22 +88,33 @@
                         placeholder="Enter name"
                       />
                     </div>
+                    <div class="input-group py-2 mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" htmlFor="inputGroupSelect01">
+                          race
+                        </label>
+                      </div>
+                      <select class="custom-select w-50" id="inputGroupSelect01">
+                        <option selected>Choose...</option>
+                        <option value={1}>Dog</option>
+                        <option value={2}>Cat</option>
+                        <option value={3}>Others</option>
+                        
+                        
+                      </select>
+                    </div>
+
+
+
                     <div class="form-group py-2">
-                      <label htmlFor="exampleInputEmail1">Race</label>
+                      <label htmlFor="exampleInputEmail1">type</label>
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="Enter Race"
+                        placeholder="Enter Type"
                       />
                     </div>
-                    <div class="form-group py-2">
-                      <label htmlFor="exampleInputEmail1">Contact</label>
-                      <input
-                        type="phone"
-                        class="form-control"
-                        placeholder="Enter Phone number"
-                      />
-                    </div>
+                   
             
                     <div class="form-group py-2">
                       <label htmlFor="exampleInputEmail1">Location</label>
@@ -144,29 +160,23 @@
                       </select>
                     </div>
             
-                    <div class="input-group py-2 mb-3">
-                      <div class="input-group-prepend">
-                        <label class="input-group-text" htmlFor="inputGroupSelect01">
-                          type
-                        </label>
-                      </div>
-                      <select class="custom-select w-50" id="inputGroupSelect01">
-                        <option selected>Choose...</option>
-                        <option value={1}>Dog</option>
-                        <option value={2}>Cat</option>
-                        <option value={3}>Others</option>
-                        
-                        
-                      </select>
-                    </div>
+                   
                     
             
                     
                     <button type="submit" class="btn btn-primary w-100">
                       Submit
                     </button>
+                  </form> -->
+                  
+                  <form action="give" class="w-50 m-auto" method="post" enctype="multipart/form-data">
+                    {% for message in messages %}
+                      <h6 style="color: red;">{{message}}</h6>
+                    {% endfor %}
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-outline-primary w-100">submit</button>
                   </form>
-
             </div>
         </div>
        
