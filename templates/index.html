@@ -50,12 +50,21 @@
             Breeds
           </li>
           </a>
+          {% if user.is_authenticated %}
           <a href="/give"  style="text-decoration: none; color: black;">
+            
           <li class="nav-item mx-4">
             Give your pet
           </li>
           </a>
-
+          {% else %}
+          <a href="/login"  style="text-decoration: none; color: black;">
+            
+            <li class="nav-item mx-4">
+              Give your pet
+            </li>
+            </a>
+            {% endif %}
 
 
         </ul>
@@ -93,7 +102,12 @@
           </div>
           <div class="banner__btn d-flex pt-4 justify-content-around ">
             <a href="/find" class="btn btn-primary  banner__btn py-2 ">Find A Pet</a>
+            {%  if user.is_authenticated %}
             <a href="/give" class="btn btn-primary  py-2 banner__btn">Give your pet</a>
+            {% else %}
+            <a href="/login" class="btn btn-primary  py-2 banner__btn">Give your pet</a>
+            {% endif %}
+
           </div>
         </div>
       </div>

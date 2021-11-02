@@ -10,6 +10,7 @@ urlpatterns=[
     path('find',views.find,name="find"),
     path('breed',views.breed,name='breed'),
     path('give',views.give,name='give'),
+    path('detail/<int:pk>',views.detail,name='detail')
     
 
 ]

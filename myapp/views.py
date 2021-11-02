@@ -82,3 +82,7 @@ def give(request):
         form=PetForm()
         # pet=Pet.objects.all()
         return render(request,'give.html',{'form':form})
+def detail(request,pk):
+    pet=Pet.objects.get(id=pk)
+
+    return render(request,'detail.html',{'pet':pet})
