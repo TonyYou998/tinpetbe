@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Knewave&display=swap");
-
 .navbar-nav li {
   font-weight: 500 !important;
   font-size: 20px;
@@ -215,6 +214,8 @@
 }
 
 .upload__pet {
+  background-image: url("../../public/img/loginbg.jpg");
+  background-size: cover;
   background-color: #f3e9e8;
   padding-top: 100px;
 }
@@ -222,6 +223,134 @@
 .upload__pet .upload__container {
   width: 30%;
   margin: 0 auto;
+}
+
+.Header__introProduct {
+  padding-left: 100px;
+}
+
+.Header__introProduct h2 {
+  padding-top: 80px;
+}
+
+.Header__introProduct i {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.Info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 600px 600px auto;
+      grid-template-columns: auto 600px 600px auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.Info .__Item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px auto;
+      grid-template-columns: 100px auto;
+  grid-gap: 10px;
+}
+
+.Info .__Item span {
+  margin-right: 10px;
+}
+
+.Info .__Item input {
+  width: 400px;
+}
+
+.Info .__Item select {
+  width: 200px;
+}
+
+.Info .Info__Left img {
+  width: 100%;
+  height: 500px;
+  border-radius: 15px;
+}
+
+.Info .Info__Left {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 3;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  margin-left: 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Info .Info__Left .Your__Choose {
+  border-radius: 15px;
+  background-color: #8C8EFF;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: 150px auto 150px;
+      grid-template-columns: 150px auto 150px;
+  margin-top: 10px;
+}
+
+.Info .Info__Left .Your__Choose h4 {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  color: white;
+}
+
+.Info .Info__Left .Your__Choose h6 {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  text-align: center;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 3;
+  padding-top: 20%;
+  padding-bottom: 20%;
+  padding-right: 20px;
+  padding-left: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Info .Info__Left .Your__Choose button {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  width: 150px;
+  height: 40px;
+  border-radius: 24px;
+  background-color: white;
+  color: blue;
+}
+
+.Info .Info__Right {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+  grid-column-end: 4;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  padding: 10px;
+}
+
+.Info .Info__Right span {
+  padding-left: 8px;
+}
+
+.Info .Info__Right textarea {
+  width: 100%;
+  height: 100px;
+  border-style: none;
 }
 
 * {
