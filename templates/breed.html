@@ -75,97 +75,20 @@
         <div class="findapet__wrapper ">
             <h3 class="text-center">All breeding available  </h3>
           <div class="container">
+            {% for x in pets %}
             <div class="row">
                 <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog1.jpg' %}" alt=""/>
+                    <img class="item__img w-100" src="{{x.image.url}}" alt=""/>
                     <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
+                        <a href="/detail/{{x.id}}">
+                        <h6 class="py-2 btn btn-primary w-100" >{{x.name}}</h6>
+                        </a>
                        
                         
                     </div>
                 </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog2.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog3.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog4.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog7.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog6.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog7.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog6.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
-                <div class="item__wrapper col-3 pt-3">
-                    <img class="item__img w-100" src="{% static 'img/dog1.jpg' %}" alt=""/>
-                    <div class="item__content">
-                        <Link to="/detail/id">
-                        <h6 class="py-2 btn btn-primary w-100" >{name}</h6>
-                        </Link>
-                       
-                        
-                    </div>
-                </div>
+              
+                {% endfor %}
 
               
             </div>

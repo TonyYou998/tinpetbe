@@ -54,7 +54,7 @@
           <a href="/give"  style="text-decoration: none; color: black;">
             
           <li class="nav-item mx-4">
-            Give your pet
+            Upload pet
           </li>
           </a>
           {% else %}
@@ -74,7 +74,10 @@
         {% if user.is_authenticated %}
           
             <i class="mr-1 fa fa-user"></i>
-            <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+            <a href="/profile" style="text-decoration: none;color: black;">
+              <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+            </a>
+            
             <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
           
           <!-- <a href="/logout">logout</a> -->
@@ -103,9 +106,9 @@
           <div class="banner__btn d-flex pt-4 justify-content-around ">
             <a href="/find" class="btn btn-primary  banner__btn py-2 ">Find A Pet</a>
             {%  if user.is_authenticated %}
-            <a href="/give" class="btn btn-primary  py-2 banner__btn">Give your pet</a>
+            <a href="/give" class="btn btn-primary  py-2 banner__btn">Upload Pet</a>
             {% else %}
-            <a href="/login" class="btn btn-primary  py-2 banner__btn">Give your pet</a>
+            <a href="/login" class="btn btn-primary  py-2 banner__btn">Upload Pet</a>
             {% endif %}
 
           </div>
@@ -117,64 +120,17 @@
         <div class="pt-5 pb-4"> 
           <h5 class="text-center  ">Dogs</h5>
           <div class="your-class">
+            {% for x in dogs %}
             <div class="arr__item">
               
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
-            <div class="arr__item">
-              <img src="{% static 'img/dog1.jpg' %}" alt="">
-              <a> 
-                  <p class=" btn-primary text-center detail__btn">shiba inu</p>
-              </a>
-              
-            </div>  
+              <img src="{{x.image.url}}" alt="">
+              <a href="detail/{{x.id}}"> 
+                  <p class=" btn-primary text-center detail__btn">{{x.name}}</p>
 
+              </a>
+              
+            </div>  
+            {% endfor %}
           </div>
 
         </div>

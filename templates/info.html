@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="./slick-1.8.1/slick-1.8.1/slick/slick.css">
     <link rel="stylesheet" href="./slick-1.8.1/slick-1.8.1/slick/slick-theme.css">
     <!-- <link rel="stylesheet" href="./scss/main.css"> -->
+    <!-- <link rel="stylesheet" href="./scss/main.css"> -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-
     <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
         <a href="/" style="text-decoration: none; color: black;">
         <h1 class="logo">
@@ -75,7 +75,10 @@
           {% if user.is_authenticated %}
             
               <i class="mr-1 fa fa-user"></i>
-              <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              <a href="/profile" style="text-decoration: none;color: black;">
+                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              </a>
+              
               <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
             
             <!-- <a href="/logout">logout</a> -->
@@ -90,73 +93,74 @@
          
         </div>
       </nav>
+    <div class="Profile__main">
+        <div class="Profile__Left">
+            <div class="setting__header">
+                <h4>Cài đặt</h4>
+            </div>
+            <hr>
+            <div class="setting__detail">
+                <div class="setting__general">
+                    <a href="/profile">
+                        <i class="fas fa-cog"></i>
+                        <span>Information</span>
+                    </a>
 
-    <div class="Header__introProduct">
-        <h2>Product Infomation</h2>
-        <hr class="Header__line">
-        </hr>
-        <i class="fas fa-arrow-left">back</i>
-    </div>
-
-    <div class="Info">
-        
-        <div class="Info__Left">
-            <img src="{{pet.image.url}}" />
-            <div class="Your__Choose">
-                <h4>Do you like it?</h4>
-               
-                <a href="/send?email={{pet.email}}&owner={{user.email}}">
-                    <button type="button" class="btnDetail">Adopt Now</button>
-                </a>
+                </div>
+                <!-- <div class="setting__pass">
+                    <a href="">
+                        <i class="fas fa-key"></i>
+                        <span>Thay đổi mật khẩu</span>
+                    </a>
+                </div> -->
+                <hr>
                 
-                <h6>Or</h6>
-                <button type="button" class="btnDetail">Add to Cart</button>
+               
+                <hr>
+
+                <div class="setting__pet">
+                    <a href="/mypet">
+                        <i class="fas fa-paw"></i>
+                        <span>My Pets</span>
+                    </a>
+                </div>
+               
+
             </div>
+
         </div>
-        <div class="Info__Right">
-            <!-- <h3>Pet Detail</h3> -->
-            <div class="__Item">
-                <span>Name: </span>
-                <input type="text" id="fname"  name="fname" value="{{pet.name}}" disabled>
-            </div>
-            <hr />
-            <div class="__Item">
-                <span>Gender: </span>
-                <input type="text" id="fname"  name="fname" value="{{pet.gender}}" disabled>
-            </div>
+        <div class="Profile__Right">
+            <h4>General</h4>
             <hr>
-            <div class="__Item">
-                <span>Age: </span>
-                <input type="text" id="fname" value="{{pet.age}}" name="fname" disabled>
+            <div class="Profile__pic">
+                <img src="https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg" id="output" />
+                <!-- <label for="myfile">Thay đổi avarta:</label>
+                <input id="file" type="file" onchange="loadFile(event)" /> -->
             </div>
-            <hr />
+            <br>
+            <!-- <h5>Information</h5> -->
             <div class="__Item">
-                <span>Race: </span>
-                <input type="text" id="fname" value="{{pet.race}}" disabled name="fname">
+                
+                <span>Username: </span>
+                <input type="text" id="fname"  name="fname" value="{{user.username}}" disabled>
             </div>
-            <hr>
+            <br>
+            <!-- <h5>THÔNG TIN LIÊN LẠC</h5> -->
             <div class="__Item">
-                <span>Type: </span>
-                <input type="text" id="fname" name="fname" value="{{pet.type}}" disabled>
+                <!-- <span>Địa chỉ: </span>
+                <input type="text" id="fname" name="fname" required> -->
+                <!-- <span>Số điện thoại: </span>
+                <input type="tel" pattern="^[0-9-+\s()]*$" required> -->
+                <span>Email: </span>
+                <input type="email" value={{user.email}} name="fname" disabled>
+                
+                <span>Pets: </span>
+                <input type="text" value={{number}} name="fname" disabled>
             </div>
-            <hr />
-            
-            <hr>
-            <div class="__Item">
-                <span>Location: </span>
-                <input type="text" id="fname" name="fname" value="{{pet.location}}" disabled>
-            </div>
-            <hr />
-           
-            <hr />
-            <div class="__Item">
-                <span>Owner: </span>
-                <input type="text" id="fname" name="fname" value="{{pet.owner}}"  disabled >
-            </div>
+            <br>
+            <!-- <input type="submit" value="Cập nhật"> -->
         </div>
     </div>
-
-
 
 
 
@@ -307,7 +311,20 @@
             }
         })
     </script>
-
+    <script>
+        $(function () {
+            $('#profile-image1').on('click', function () {
+                $('#profile-image-upload').click();
+            });
+        });
+    </script>
+    <script>
+        var loadFile = function (event) {
+            var image = document.getElementById("output");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+    
 </body>
 
 </html>
