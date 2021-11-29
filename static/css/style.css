@@ -84,7 +84,7 @@
 }
 
 .MainForm {
-  background-image: url("../../public/img/loginbg.jpg");
+  background-image: url("../img/loginbg.jpg");
   background-size: cover;
 }
 
@@ -214,10 +214,11 @@
 }
 
 .upload__pet {
-  background-image: url("../../public/img/loginbg.jpg");
+  background-image: url("../img/loginbg.jpg");
   background-size: cover;
   background-color: #f3e9e8;
   padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .upload__pet .upload__container {
@@ -294,7 +295,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   -ms-grid-columns: 150px auto 150px;
-      grid-template-columns: 150px auto 150px;
+      /* grid-template-columns: 150px auto 150px; */
   margin-top: 10px;
 }
 

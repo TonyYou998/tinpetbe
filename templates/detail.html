@@ -55,14 +55,14 @@
             <a href="/give"  style="text-decoration: none; color: black;">
               
             <li class="nav-item mx-4">
-              Give your pet
+              Upload pet
             </li>
             </a>
             {% else %}
             <a href="/login"  style="text-decoration: none; color: black;">
               
               <li class="nav-item mx-4">
-                Give your pet
+                Upload Pet
               </li>
               </a>
               {% endif %}
@@ -75,7 +75,10 @@
           {% if user.is_authenticated %}
             
               <i class="mr-1 fa fa-user"></i>
-              <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              <a href="/profile" style="text-decoration: none;color: black;">
+                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              </a>
+              
               <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
             
             <!-- <a href="/logout">logout</a> -->
@@ -106,11 +109,11 @@
                 <h4>Do you like it?</h4>
                
                 <a href="/send?email={{pet.email}}&owner={{user.email}}">
-                    <button type="button" class="btnDetail">Adopt Now</button>
+                    <button type="button" class="btnDetail">Contact Now</button>
                 </a>
                 
-                <h6>Or</h6>
-                <button type="button" class="btnDetail">Add to Cart</button>
+                <!-- <h6>Or</h6>
+                <button type="button" class="btnDetail">Add to Cart</button> -->
             </div>
         </div>
         <div class="Info__Right">

@@ -46,7 +46,7 @@
             <a href="/give"  style="text-decoration: none; color: black;">
               
             <li class="nav-item mx-4">
-              Give your pet
+              Upload pet
             </li>
             </a>
             {% else %}
@@ -87,14 +87,18 @@
         <div class="findapet__wrapper ">
             <h3 class="text-center">Browse all pet </h3>
           <div class="container">
-            <form method="get" class="row searchFilter" >
-              <div class="w-50" >
+            <form method="post" action="find" class="row searchFilter" >
+              {% csrf_token %}
+              <div class="w-100" >
                <div class="input-group" >
                 <input name="name"  type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
                 <div class="input-group-btn" >
                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ><span class="label-icon" >Race</span> <span class="caret" >&nbsp;</span></button>
                  <div class="dropdown-menu dropdown-menu-right" >
                     <ul class="category_filters" style="list-style: none;text-align: left;" >
+                      <li >
+                        <input class="cat_type category-input" data-label="All" id="all" value="A"  name="race" type="radio" checked="checked" ><label for="all" >All</label>
+                       </li>
                      <li >
                       <input class="cat_type category-input" data-label="All" id="all" value="D" name="race" type="radio" ><label for="all" >Dog</label>
                      </li>
@@ -108,6 +112,7 @@
                     </ul>
                  </div>
                  <button  type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+                 <a class="btn btn-primary" href="/find">reset</a>
                 </div>
                </div>
               </div>

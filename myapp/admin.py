@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import demo,Pet,Product
+from .models import Pet
 
 # Register your models here.
-admin.site.register(demo)
+# admin.site.register(demo)
 admin.site.register(Pet)
-admin.site.register(Product)
+# admin.site.register(Product)

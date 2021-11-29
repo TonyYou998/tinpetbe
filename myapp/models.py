@@ -4,8 +4,8 @@ from django.db.models.fields import CharField
 
 # Create your models here.
 
-class demo(models.Model):
-    name=models.CharField(max_length=10)
+# class demo(models.Model):
+#     name=models.CharField(max_length=10)
 
 
 class Pet(models.Model):
@@ -48,8 +48,8 @@ class Pet(models.Model):
     def __str__(self):
         return self.name
 
-class Product(models.Model):    
-    name=models.CharField(max_length=20)
-    price=models.IntegerField()
-    quanntity=models.IntegerField()
+# class Product(models.Model):    
+#     name=models.CharField(max_length=20)
+#     price=models.IntegerField()
+#     quanntity=models.IntegerField()
     

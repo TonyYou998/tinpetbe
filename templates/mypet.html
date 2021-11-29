@@ -28,74 +28,74 @@
 <body>
     <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
         <a href="/" style="text-decoration: none; color: black;">
-            <h1 class="logo">
-                TINPETS
-            </h1>
+        <h1 class="logo">
+          TINPETS
+        </h1>
         </a>
-
-
+  
+  
         <div class=" navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav m-auto">
-                <a href="" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-
-                        About us
-                    </li>
-                </a>
-
-                <a href="/find" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-                        Find a pet
-                    </li>
-                </a>
-
-                <a href="/breed" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-                        Breeds
-                    </li>
-                </a>
-                {% if user.is_authenticated %}
-                <a href="/give" style="text-decoration: none; color: black;">
-
-                    <li class="nav-item mx-4">
-                        Give your pet
-                    </li>
-                </a>
-                {% else %}
-                <a href="/login" style="text-decoration: none; color: black;">
-
-                    <li class="nav-item mx-4">
-                        Give your pet
-                    </li>
-                </a>
-                {% endif %}
-
-
-            </ul>
-
-            <i class="mr-3  fa fa-shopping-cart "></i>
-
+          <ul class="navbar-nav m-auto">
+              <a href="" style="text-decoration: none; color: black;">
+                <li class="nav-item mx-4">
+  
+                  About us
+                </li>
+              </a>
+           
+            <a href="/find"  style="text-decoration: none; color: black;">
+            <li class="nav-item mx-4">
+              Find a pet
+            </li>
+            </a>
+  
+            <a href="/breed"  style="text-decoration: none; color: black;">
+            <li class="nav-item mx-4">
+              Breeds
+            </li>
+            </a>
             {% if user.is_authenticated %}
-
-            <i class="mr-1 fa fa-user"></i>
-            <a href="/profile" style="text-decoration: none;color: black;">
-                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+            <a href="/give"  style="text-decoration: none; color: black;">
+              
+            <li class="nav-item mx-4">
+              Upload pet
+            </li>
             </a>
-
-            <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
-
-            <!-- <a href="/logout">logout</a> -->
             {% else %}
-            <a href="/login" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-                SIGN IN
-            </a>
-            <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-                SIGN UP
-            </a>
-            {% endif %}
-
+            <a href="/login"  style="text-decoration: none; color: black;">
+              
+              <li class="nav-item mx-4">
+                Upload Pet
+              </li>
+              </a>
+              {% endif %}
+  
+  
+          </ul>
+  
+          <i class="mr-3  fa fa-shopping-cart "></i>
+          
+          {% if user.is_authenticated %}
+            
+              <i class="mr-1 fa fa-user"></i>
+              <a href="/profile" style="text-decoration: none;color: black;">
+                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              </a>
+              
+              <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
+            
+            <!-- <a href="/logout">logout</a> -->
+          {% else %}
+          <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+            SIGN IN
+          </a>
+          <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+            SIGN UP
+          </a>   
+          {% endif %}
+         
         </div>
-    </nav>
+      </nav>
     <div class="Profile__main">
         <div class="Profile__Left">
             <div class="setting__header">

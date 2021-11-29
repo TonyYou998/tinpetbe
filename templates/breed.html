@@ -14,69 +14,112 @@
   </head>
   <body>
     <div>
-        <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
-            <a href="/" style="text-decoration: none; color: black;">
-            <h1 class="logo">
-              TINPETS
-            </h1>
-            </a>
-      
-      
-            <div class=" navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav m-auto">
-                  <a href="" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-      
-                      About us
-                    </li>
-                  </a>
-               
-                <a href="/find"  style="text-decoration: none; color: black;">
+      <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
+        <a href="/" style="text-decoration: none; color: black;">
+        <h1 class="logo">
+          TINPETS
+        </h1>
+        </a>
+  
+  
+        <div class=" navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto">
+              <a href="" style="text-decoration: none; color: black;">
                 <li class="nav-item mx-4">
-                  Find a pet
+  
+                  About us
                 </li>
-                </a>
-      
-                <a href="/breed"  style="text-decoration: none; color: black;">
-                <li class="nav-item mx-4">
-                  Breeds
-                </li>
-                </a>
-                <a href="/give"  style="text-decoration: none; color: black;">
-                <li class="nav-item mx-4">
-                  Give your pet
-                </li>
-                </a>
-      
-      
-      
-              </ul>
-      
-              <i class="mr-3  fa fa-shopping-cart "></i>
-              
-              {% if user.is_authenticated %}
-                
-                <i class="mr-1 fa fa-user"></i>
-                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
-                <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
-                
-               
-              {% else %}
-              <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-                SIGN IN
               </a>
-              <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-                SIGN UP
-              </a>   
+           
+            <a href="/find"  style="text-decoration: none; color: black;">
+            <li class="nav-item mx-4">
+              Find a pet
+            </li>
+            </a>
+  
+            <a href="/breed"  style="text-decoration: none; color: black;">
+            <li class="nav-item mx-4">
+              Breeds
+            </li>
+            </a>
+            {% if user.is_authenticated %}
+            <a href="/give"  style="text-decoration: none; color: black;">
+              
+            <li class="nav-item mx-4">
+              Upload pet
+            </li>
+            </a>
+            {% else %}
+            <a href="/login"  style="text-decoration: none; color: black;">
+              
+              <li class="nav-item mx-4">
+                Give your pet
+              </li>
+              </a>
               {% endif %}
-             
-            </div>
-          </nav>
+  
+  
+          </ul>
+  
+          <i class="mr-3  fa fa-shopping-cart "></i>
+          
+          {% if user.is_authenticated %}
+            
+              <i class="mr-1 fa fa-user"></i>
+              <a href="/profile" style="text-decoration: none;color: black;">
+                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              </a>
+              
+              <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
+            
+            <!-- <a href="/logout">logout</a> -->
+          {% else %}
+          <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+            SIGN IN
+          </a>
+          <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+            SIGN UP
+          </a>   
+          {% endif %}
+         
+        </div>
+      </nav>
         <div class="findapet__wrapper ">
             <h3 class="text-center">All breeding available  </h3>
           <div class="container">
-            {% for x in pets %}
+            <form method="post" action="breed" class="row searchFilter" >
+              {% csrf_token %}
+              <div class="w-100" >
+               <div class="input-group" >
+                <input name="name"  type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
+                <div class="input-group-btn" >
+                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ><span class="label-icon" >Race</span> <span class="caret" >&nbsp;</span></button>
+                 <div class="dropdown-menu dropdown-menu-right" >
+                    <ul class="category_filters" style="list-style: none;text-align: left;" >
+                      <li >
+                        <input class="cat_type category-input" data-label="All" id="all" value="A"  name="race" type="radio" checked="checked" ><label for="all" >All</label>
+                       </li>
+                     <li >
+                      <input class="cat_type category-input" data-label="All" id="all" value="D" name="race" type="radio" ><label for="all" >Dog</label>
+                     </li>
+                     <li >
+                      <input type="radio" name="race" id="Design" value="C" ><label class="category-label" for="Design" >Cat</label>
+                     </li>
+                     <li >
+                        <input type="radio" name="race" id="Design" value="O" ><label class="category-label" for="Design" >Others</label>
+                     </li>
+                   
+                    </ul>
+                 </div>
+                 <button  type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+                 <a class="btn btn-primary" href="/breed">reset</a>
+                </div>
+               </div>
+              </div>
+           </form>
+            
             <div class="row">
+              {% for x in pets %}
                 <div class="item__wrapper col-3 pt-3">
                     <img class="item__img w-100" src="{{x.image.url}}" alt=""/>
                     <div class="item__content">

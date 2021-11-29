@@ -64,13 +64,38 @@ def find(request):
     else:
         name=request.POST['name']
         race=request.POST['race']
-        return redirect('/')
+        
+        if race=="" or race=="A":
+            
+            pet=Pet.objects.all().filter( purpose='G',name=name)
+       
+        elif name=="":
+             pet=Pet.objects.all().filter( purpose='G',race=race)
+       
+        else :
+            pet=Pet.objects.all().filter( purpose='G',name=name,race=race)
+    return render(request,'find.html',{'pets':pet})
     
 
    
 
 def breed(request):
-    pet=Pet.objects.all().filter(purpose='B')
+    if request.method=='GET':
+        pet=Pet.objects.all().filter(purpose='B')
+        return render(request,'breed.html',{'pets':pet})
+    else:
+        name=request.POST['name']
+        race=request.POST['race']
+        
+        if race=="" or race=="A":
+            
+            pet=Pet.objects.all().filter( purpose='B',name=name)
+       
+        elif name=="":
+             pet=Pet.objects.all().filter( purpose='B',race=race)
+       
+        else :
+            pet=Pet.objects.all().filter( purpose='B',name=name,race=race)
     return render(request,'breed.html',{'pets':pet})
 
 
@@ -100,7 +125,7 @@ def give(request):
         return render(request,'give.html',{'form':form})
 def detail(request,pk):
     pet=Pet.objects.get(id=pk)
-
+    
     return render(request,'detail.html',{'pet':pet})
 def send(request):
     email=request.GET['email']
@@ -109,8 +134,8 @@ def send(request):
     message='hello this email to inform you that '+userMail+ " would like to adopt your pet. please contact with him/her."
    
     send_mail('About your pet on tinpet',message,'tinpetofficial@outlook.com',[email], fail_silently=False)
-    alert="email has been sent"
-    return redirect('/',{'alert':alert})
+    messages.info(request,'Email has been sent')
+    return redirect('/')
     
 def profile(request):
     userName=request.user
@@ -153,5 +178,26 @@ def editPet(request,pk):
         mypet.location=location
         mypet.save()
         return redirect("/mypet")
+    else:
+        return redirect('/')
+def editUser(request,pk):
+    
+    if request.method=='POST' and request.user.is_authenticated:
+        username=request.POST['username']
+        email=request.POST['email']
+        firstName=request.POST['firstName']
+        lastName=request.POST['lastName']
+        
+        user=User.objects.get(id=pk)
+        if user.username != username:
+            if User.objects.filter(username=username).exists():
+                messages.info(request,'username already used')
+                return redirect('/profile')
+        user.username=username
+        user.email=email
+        user.first_name=firstName
+        user.last_name=lastName
+        user.save()
+        return redirect("/profile")
     else:
         return redirect('/')
