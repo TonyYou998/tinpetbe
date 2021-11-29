@@ -11,8 +11,8 @@ from django.db.models.fields import CharField
 class Pet(models.Model):
     
     SEX_CHOICES = (
-        ('F', 'Female',),
-        ('M', 'Male',),
+        ('Female', 'Female',),
+        ('Male', 'Male',),
         
     )
     RACE_CHOICES=(
