@@ -1,11 +1,15 @@
-from django.contrib.auth.models import User
+from typing import AbstractSet
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import CharField
+from django.db.models.fields.related import OneToOneField
 
 # Create your models here.
 
 # class demo(models.Model):
 #     name=models.CharField(max_length=10)
+
 
 
 class Pet(models.Model):
@@ -16,13 +20,13 @@ class Pet(models.Model):
         
     )
     RACE_CHOICES=(
-        ('D','Dog'),
-        ('C','Cat'),
-        ('O','Other'),
+        ('Dog','Dog'),
+        ('Cat','Cat'),
+        ('Other','Other'),
     )
     PURPOSE_CHOICES=(
-        ('G','Give'),
-        ('B','Breed'),
+        ('Give','Give'),
+        ('Breed','Breed'),
     )
     name=models.CharField(max_length=20)
     gender=models.CharField(
@@ -44,9 +48,23 @@ class Pet(models.Model):
     image=models.ImageField(upload_to='img/%y')
     owner=models.CharField(max_length=20)
     email=models.CharField(max_length=50)
-    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE,default=None)
+    # user_favourite=models.ForeignKey(UserFavourite,on_delete=CASCADE,default=None,null=True,blank=True)
+    # favourites=models.ManyToManyField(User,related_name='favourite',default=None,blank=True)
     def __str__(self):
         return self.name
+    
+
+class UserFavourite(models.Model):
+        user=models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
+        
+class Comment(models.Model):
+    # title=models.CharField(max_length=255)
+    body=models.CharField(max_length=1000)
+    pet =models.ForeignKey(Pet,on_delete=CASCADE,related_name='comments')
+    postBy=models.ForeignKey(User,on_delete=CASCADE,related_name='postby')
+
+
 
 # class Product(models.Model):    
 #     name=models.CharField(max_length=20)

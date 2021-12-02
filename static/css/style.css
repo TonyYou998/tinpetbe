@@ -618,3 +618,7 @@
 	right: 0px;
   }
 }
+
+.Info .Info__Right .comment__body {
+  border-style: double !important;
+}

@@ -17,7 +17,9 @@ urlpatterns=[
     path('mypet',views.mypet,name='mypet'),
     path('mypet/delete/<int:pk>',views.deletePet,name='deletePet'),
     path('editpet/<int:pk>',views.editPet,name='editPet'),
-    path('edituser/<int:pk>',views.editUser,name='editUser')
+    path('edituser/<int:pk>',views.editUser,name='editUser'),
+    path('favourite/<int:pk>',views.addToFavourite,name='addToFavourite'),
+    path('comment',views.comment,name='comment')
     
 
 ]

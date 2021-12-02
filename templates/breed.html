@@ -31,13 +31,13 @@
                 </li>
               </a>
            
-            <a href="/find"  style="text-decoration: none; color: black;">
+            <a href="/find?page=1"  style="text-decoration: none; color: black;">
             <li class="nav-item mx-4">
               Find a pet
             </li>
             </a>
   
-            <a href="/breed"  style="text-decoration: none; color: black;">
+            <a href="/breed?page=1"  style="text-decoration: none; color: black;">
             <li class="nav-item mx-4">
               Breeds
             </li>
@@ -135,6 +135,14 @@
 
               
             </div>
+            <div class="page_link text-right py-3" >
+              {% if page.has_previous %}
+              <a href="?page={{page.previous_page_number}}" style="color: black;">  Previous Page </a>
+              {%  endif %}
+              {% if page.has_next %}
+              <a href="?page={{page.next_page_number}}" style="color: black;">  Next Page</a>
+              {% endif %}
+           </div>
           </div>
         </div>
     </div>  

@@ -1,11 +1,12 @@
 from django import forms
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, request
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .form import PetForm
-from .models import Pet
+from .form import CommentForm, PetForm
+from .models import Pet,Comment
 from django.core.mail import send_mail
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index(request):
@@ -59,30 +60,42 @@ def logout(request):
 def find(request):
    
     if request.method=='GET':
-        pet=Pet.objects.all().filter(purpose='G')
-        return render(request,'find.html',{'pets':pet})
+        pet=Pet.objects.all().filter(purpose='Give')
+        
+        page_number=request.GET['page']
+        pet_paginator=Paginator(pet,8)
+        page=pet_paginator.get_page(page_number)
+        
+        return render(request,'find.html',{'pets':page})
     else:
         name=request.POST['name']
         race=request.POST['race']
-        
+        print(name,race)
         if race=="" or race=="A":
             
             pet=Pet.objects.all().filter( purpose='G',name=name)
-       
+            print(pet)
         elif name=="":
              pet=Pet.objects.all().filter( purpose='G',race=race)
        
         else :
             pet=Pet.objects.all().filter( purpose='G',name=name,race=race)
-    return render(request,'find.html',{'pets':pet})
+    pet_paginator=Paginator(pet,8)
+    page=pet_paginator.get_page(1)
+   
+    return render(request,'find.html',{'pets':page})
     
 
    
 
 def breed(request):
     if request.method=='GET':
-        pet=Pet.objects.all().filter(purpose='B')
-        return render(request,'breed.html',{'pets':pet})
+        pet=Pet.objects.all().filter(purpose='Breed')
+        page_number=request.GET['page']
+        pet_paginator=Paginator(pet,8)
+        page=pet_paginator.get_page(page_number)
+        print("pet:",pet)
+        return render(request,'breed.html',{'pets':page})
     else:
         name=request.POST['name']
         race=request.POST['race']
@@ -125,8 +138,10 @@ def give(request):
         return render(request,'give.html',{'form':form})
 def detail(request,pk):
     pet=Pet.objects.get(id=pk)
-    
-    return render(request,'detail.html',{'pet':pet})
+    comment=Comment.objects.all().filter(pet=pet)
+    # print(comment[0].body)
+    form=CommentForm();
+    return render(request,'detail.html',{'pet':pet,'form':form,'comment':comment})
 def send(request):
     email=request.GET['email']
     userMail=request.GET['owner']
@@ -201,3 +216,40 @@ def editUser(request,pk):
         return redirect("/profile")
     else:
         return redirect('/')
+def addToFavourite(request,pk):
+   
+    pet=Pet.objects.get(id=pk)
+    print(pet)
+    # if pet.favourites.filter(id=request.user.id).exists():
+        # pet.favourites.remove(request.user)
+    # else:
+    pet.favourites.remove(request.user)
+    # return redirect('detail/'+pk)
+    return redirect("/")
+def comment(request):
+    
+    
+    if request.method=='POST':
+        id=request.POST['id']
+        pet=Pet.objects.get(id=id)
+        
+    
+        form=CommentForm(request.POST)
+        
+        if form.is_valid():
+            
+            comment=form.save(commit=False)
+            comment.pet=pet
+            comment.postBy=request.user
+            comment.save()
+    return redirect('/detail/'+id)
+        
+            
+    
+        
+
+
+        
+    
+
+    

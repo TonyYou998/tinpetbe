@@ -39,13 +39,13 @@
               </li>
             </a>
          
-          <a href="/find"  style="text-decoration: none; color: black;">
+          <a href="/find?page=1"  style="text-decoration: none; color: black;">
           <li class="nav-item mx-4">
             Find a pet
           </li>
           </a>
 
-          <a href="/breed"  style="text-decoration: none; color: black;">
+          <a href="/breed?page=1"  style="text-decoration: none; color: black;">
           <li class="nav-item mx-4">
             Breeds
           </li>
@@ -104,7 +104,7 @@
             <p class="text-center pt-1">Scratch a dog and you will find a permanent job</p>
           </div>
           <div class="banner__btn d-flex pt-4 justify-content-around ">
-            <a href="/find" class="btn btn-primary  banner__btn py-2 ">Find A Pet</a>
+            <a href="/find?page=1" class="btn btn-primary  banner__btn py-2 ">Find A Pet</a>
             {%  if user.is_authenticated %}
             <a href="/give" class="btn btn-primary  py-2 banner__btn">Upload Pet</a>
             {% else %}

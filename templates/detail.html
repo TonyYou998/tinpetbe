@@ -40,13 +40,13 @@
                 </li>
               </a>
            
-            <a href="/find"  style="text-decoration: none; color: black;">
+            <a href="/find?page=1"  style="text-decoration: none; color: black;">
             <li class="nav-item mx-4">
               Find a pet
             </li>
             </a>
   
-            <a href="/breed"  style="text-decoration: none; color: black;">
+            <a href="/breed?page=1"  style="text-decoration: none; color: black;">
             <li class="nav-item mx-4">
               Breeds
             </li>
@@ -156,9 +156,24 @@
                 <span>Owner: </span>
                 <input type="text" id="fname" name="fname" value="{{pet.owner}}"  disabled >
             </div>
+            <div class="container py-3">
+                <h6>Leave A Comment</h6>
+                <form action="/comment" method="post" class="comment__form">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{pet.id}}" name="id" >
+                    {{form.body}}
+                    
+                   <button class="btn btn-outline-primary mt-2" style="width: 100px;">submit</button>
+                </form>
+            </div>
         </div>
+        
     </div>
-
+  
+    
+    {% for x in comment %}
+        <p>{{x.body}}</p>
+    {% endfor %}
 
 
 

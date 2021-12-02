@@ -31,13 +31,13 @@
                 </li>
               </a>
            
-            <a href="/find"  style="text-decoration: none; color: black;">
+            <a href="/find?page=1"  style="text-decoration: none; color: black;">
             <li class="nav-item mx-4">
               Find a pet
             </li>
             </a>
   
-            <a href="/breed"  style="text-decoration: none; color: black;">
+            <a href="/breed?page=1"  style="text-decoration: none; color: black;">
             <li class="nav-item mx-4">
               Breeds
             </li>
@@ -130,13 +130,13 @@
                     </ul>
                  </div> -->
                  <button  type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
-                 <a class="btn btn-primary" href="/find">reset</a>
+                 <a class="btn btn-primary" href="/find?page=1">reset</a>
                 </div>
                </div>
               </div>
            </form>
             <div class="row">
-                {% for x in pets %}
+                {% for x in pets.object_list %}
                
                 <div class="item__wrapper col-3 pt-3">
                     <img class="item__img w-100" src="{{ x.image.url }}" alt=""/>
@@ -150,13 +150,15 @@
                 </div>
                 
                 {% endfor %}
-               
-               
-                
-                
-               
-              
             </div>
+            <div class="page_link text-right py-3" >
+              {% if pets.has_previous %}
+              <a href="?page={{pets.previous_page_number}}" style="color: black;">  Previous Page </a>
+              {%  endif %}
+              {% if pets.has_next %}
+              <a href="?page={{pets.next_page_number}}" style="color: black;">  Next Page</a>
+              {% endif %}
+           </div>
           </div>
         </div>
     </div>  
