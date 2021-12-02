@@ -10,7 +10,10 @@ from django.db.models.fields.related import OneToOneField
 # class demo(models.Model):
 #     name=models.CharField(max_length=10)
 
-
+class User(AbstractUser):
+    is_email_verified=models.BooleanField(default=False)
+    def __str__(self):
+        return self.email
 
 class Pet(models.Model):
     

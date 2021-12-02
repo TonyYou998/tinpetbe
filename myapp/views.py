@@ -1,21 +1,41 @@
 from django import forms
+from django.contrib.auth import tokens,get_user_model
+from django.forms.fields import EmailField
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, request
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
+from six import text_type
 from .form import CommentForm, PetForm
 from .models import Pet,Comment
-from django.core.mail import send_mail
+from django.core.mail import send_mail,EmailMessage
 from django.core.paginator import Paginator
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes,force_str,force_text,DjangoUnicodeDecodeError
+# from utils import generate_token
+from .utils import generate_token
+from django.conf import settings
 # Create your views here.
-
+User=get_user_model()
 def index(request):
     dogs=Pet.objects.all().filter(race="D").order_by("-id")[:8]
     cats=Pet.objects.all().filter(race="C").order_by("-id")[:8]
 
     return render(request,'index.html',{'dogs':dogs,'cats':cats})
 
-
+def send_action_email(user,request):
+    current_Site=get_current_site(request)
+    email_subject='Activate your account'
+    email_body=render_to_string('activate.html',{
+            'user':user,
+            'domain':current_Site,
+            'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+            'token':generate_token.make_token(user)
+    })
+    email= EmailMessage(subject=email_subject,body=email_body ,from_email= settings.EMAIL_FROM_USER,to= [user.email])
+    email.send()
 def register(request):
     if request.method=='POST':
         username=request.POST['username']
@@ -32,6 +52,9 @@ def register(request):
             else:
                 user=User.objects.create_user(username=username,email=email,password=password)
                 user.save()
+                send_action_email(user,request)
+
+
                 return redirect('login')
         else:
             messages.info(request,'check your password again')
@@ -45,6 +68,9 @@ def login(request):
         
         password=request.POST['password']
         user=auth.authenticate(username=username,password=password)
+        if not user.is_email_verified:
+            messages.info(request,"Email is not verify. Please verify your email")
+            return   redirect('login')
         if user is not None:
             auth.login(request,user)
            
@@ -57,6 +83,26 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def activate_user(request,uidb64,token):
+    try:
+        print("run code in try")
+        
+        uid=force_text(urlsafe_base64_decode(uidb64))
+        print("uid:",uid)
+        user=User.objects.get(pk=uid)
+        print("user:",user)
+
+    except Exception as e:
+         user=None
+    
+    if user and generate_token.check_token(user,token):
+        user.is_email_verified=True
+        user.save()
+        messages.info(request,"Verified success")
+        return redirect('login')
+    return render(request,'authentication/activate-failed.html',{"user":user})
+
 def find(request):
    
     if request.method=='GET':
@@ -80,8 +126,8 @@ def find(request):
        
         else :
             pet=Pet.objects.all().filter( purpose='G',name=name,race=race)
-    pet_paginator=Paginator(pet,8)
-    page=pet_paginator.get_page(1)
+            pet_paginator=Paginator(pet,8)
+            page=pet_paginator.get_page(1)
    
     return render(request,'find.html',{'pets':page})
     
