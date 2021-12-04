@@ -10,7 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scss/main.css' %}">
   </head>
   <body style="background-color: #eee7de;">
     <div >
@@ -138,7 +138,7 @@
             <div class="row">
                 {% for x in pets.object_list %}
                
-                <div class="item__wrapper col-3 pt-3">
+                <div class="item__wrapper  col-sm-6 col-md-4 col-xl-3 pt-3 pt-3">
                     <img class="item__img w-100" src="{{ x.image.url }}" alt=""/>
                     <div class="item__content">
                         <a href="/detail/{{x.id}}">

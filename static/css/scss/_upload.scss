@@ -1,0 +1,22 @@
+.upload__pet{
+    background-image: url("../../img/loginbg.jpg");
+    background-size: cover;
+    background-color: #f3e9e8;
+    padding-top: 100px;
+    height: 100vh;
+   
+    .upload__container{
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+ @media screen and(max-width:1008px){
+     .upload__pet{
+        background-size: cover;
+         height: 100vh;
+     }
+     .upload__container{
+         width: 80% !important;
+     }
+ }

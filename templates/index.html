@@ -17,7 +17,7 @@
   <!-- slickjs -->
   <link rel="stylesheet" href="{% static 'css/slick.css'  %}">
   <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/scss/main.css' %}">
 </head>
 
 <body>
@@ -132,11 +132,61 @@
             </div>  
             {% endfor %}
           </div>
+           <div class="your-class1">
+            {% for x in dogs %}
+            <div class="arr__item">
+              
+              <img src="{{x.image.url}}" alt="">
+              <a href="detail/{{x.id}}"> 
+                  <p class=" btn-primary text-center detail__btn">{{x.name}}</p>
+
+              </a>
+              
+            </div>  
+            {% endfor %}
+          </div>
+          <div class="your-class2">
+            {% for x in dogs %}
+            <div class="arr__item">
+              
+              <img src="{{x.image.url}}" alt="">
+              <a href="detail/{{x.id}}"> 
+                  <p class=" btn-primary text-center detail__btn">{{x.name}}</p>
+
+              </a>
+              
+            </div>  
+            {% endfor %}
+          </div>
 
         </div>
         <div class="pt-5 pb-4"> 
           <h5 class="text-center  ">Cats</h5>
           <div class="your-class">
+            {%  for x in cats %}
+            <div class="arr__item">
+              <img src="{{ x.image.url }}" alt="">
+              <a href="detail/{{x.id}}"> 
+                  <p class=" btn-primary text-center detail__btn">{{x.name}}</p>
+              </a>
+              
+            </div>  
+            {% endfor %}
+
+          </div>
+          <div class="your-class1">
+            {%  for x in cats %}
+            <div class="arr__item">
+              <img src="{{ x.image.url }}" alt="">
+              <a href="detail/{{x.id}}"> 
+                  <p class=" btn-primary text-center detail__btn">{{x.name}}</p>
+              </a>
+              
+            </div>  
+            {% endfor %}
+
+          </div>
+          <div class="your-class2">
             {%  for x in cats %}
             <div class="arr__item">
               <img src="{{ x.image.url }}" alt="">

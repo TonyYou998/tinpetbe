@@ -20,8 +20,9 @@ from django.conf import settings
 # Create your views here.
 User=get_user_model()
 def index(request):
-    dogs=Pet.objects.all().filter(race="D").order_by("-id")[:8]
-    cats=Pet.objects.all().filter(race="C").order_by("-id")[:8]
+    dogs=Pet.objects.all().filter(race="Dog").order_by("-id")[:8]
+    
+    cats=Pet.objects.all().filter(race="Cat").order_by("-id")[:8]
 
     return render(request,'index.html',{'dogs':dogs,'cats':cats})
 
@@ -36,6 +37,9 @@ def send_action_email(user,request):
     })
     email= EmailMessage(subject=email_subject,body=email_body ,from_email= settings.EMAIL_FROM_USER,to= [user.email])
     email.send()
+
+
+    
 def register(request):
     if request.method=='POST':
         username=request.POST['username']
