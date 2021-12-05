@@ -20,7 +20,8 @@ urlpatterns=[
     path('edituser/<int:pk>',views.editUser,name='editUser'),
     path('favourite/<int:pk>',views.addToFavourite,name='addToFavourite'),
     path('comment',views.comment,name='comment'),
-    path('activate_user/<uidb64>/<token>/',views.activate_user,name="activate")
+    path('activate_user/<uidb64>/<token>/',views.activate_user,name="activate"),
+    path('verify',views.verify_view,name='verify_view')
     
 
 ]

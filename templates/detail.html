@@ -172,7 +172,19 @@
   
     
     {% for x in comment %}
-        <p>{{x.body}}</p>
+    <ul class="media-list container">
+        <li class="media">
+            <div class="media-body">
+                <!-- <span class="text-muted pull-right">
+                    <small class="text-muted">30 min ago</small>
+                </span> -->
+                <strong class="text-success">@{{x.postBy}}</strong>
+                <p>
+                   {{x.body}}
+                </p>
+            </div>
+        </li>
+    </ul>
     {% endfor %}
 
 

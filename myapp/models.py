@@ -2,18 +2,54 @@ from typing import AbstractSet
 from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 from django.db.models.deletion import CASCADE
+# from django.db.models.expressions import Random
 from django.db.models.fields import CharField
 from django.db.models.fields.related import OneToOneField
-
+import random
+from twilio.rest import Client
 # Create your models here.
 
 # class demo(models.Model):
 #     name=models.CharField(max_length=10)
+# class Score(models.Model):
+#     result=models.PositiveIntegerField()
+#     def __str__(self):
+#         return str(self.result)
+#     def save(self,*args,**kwargs):
+#         if self.result<70:
+#             account_sid = 'AC96f5105aff90abe7ce797c607ef80e24'
+#             auth_token = '7c95d518d085d309d71128a4e03a815c'
+#             client = Client(account_sid, auth_token)
 
+#             message = client.messages.create(
+#                                 body="Hi,you has logged in to Tinpet this is your verifycation code: ",
+#                                 from_='+12183040773',
+#                                 to='+84368510465'
+#                             )
+
+#             print(message.sid)
+#             return super().save(*args,**kwargs)
 class User(AbstractUser):
     is_email_verified=models.BooleanField(default=False)
+    phone_number=models.CharField(max_length=12,default=None,null=True)
+
     def __str__(self):
         return self.email
+class Code(models.Model):
+    number=models.CharField(max_length=5,blank=True)
+    User=models.OneToOneField(User,on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.number)
+    def save(self,*args,**kwargs):
+        number_list=[x for x in range(10)]
+        code_items=[]
+        for i in range(5):
+            num=random.choice(number_list)
+            code_items.append(num)
+        code_string="".join(str(item) for item in code_items)
+        self.number=code_string
+
+        super().save(*args,**kwargs)
 
 class Pet(models.Model):
     

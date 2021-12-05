@@ -1,4 +1,5 @@
 from django import forms
+from django import contrib
 from django.contrib.auth import tokens,get_user_model
 from django.forms.fields import EmailField
 from django.shortcuts import get_object_or_404, redirect, render
@@ -6,7 +7,7 @@ from django.http import HttpResponse, request
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from six import text_type
-from .form import CommentForm, PetForm
+from .form import CommentForm, PetForm,CodeForm
 from .models import Pet,Comment
 from django.core.mail import send_mail,EmailMessage
 from django.core.paginator import Paginator
@@ -17,6 +18,11 @@ from django.utils.encoding import force_bytes,force_str,force_text,DjangoUnicode
 # from utils import generate_token
 from .utils import generate_token
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from tinpet.utils import send_sms
+
+
 # Create your views here.
 User=get_user_model()
 def index(request):
@@ -44,6 +50,8 @@ def register(request):
     if request.method=='POST':
         username=request.POST['username']
         email=request.POST['email']
+        phone=request.POST['phone']
+        print("phone"+phone)
         password=request.POST['password']
         repassword=request.POST['repassword']
         if password==repassword:
@@ -55,11 +63,13 @@ def register(request):
                 return redirect('register')
             else:
                 user=User.objects.create_user(username=username,email=email,password=password)
+                user.phone_number=phone
                 user.save()
+                
                 send_action_email(user,request)
+                messages.info(request,'Please check your email to verify')
 
-
-                return redirect('login')
+                return redirect('register')
         else:
             messages.info(request,'check your password again')
             return redirect('register')
@@ -76,9 +86,11 @@ def login(request):
             messages.info(request,"Email is not verify. Please verify your email")
             return   redirect('login')
         if user is not None:
-            auth.login(request,user)
+            # auth.login(request,user)
+            request.session['pk']=user.pk
+
            
-            return redirect('/')
+            return redirect('verify_view')
         else:
             messages.info(request,'Username or Password are incrorect')
             return redirect('login')
@@ -293,12 +305,36 @@ def comment(request):
             comment.postBy=request.user
             comment.save()
     return redirect('/detail/'+id)
+# @login_required
+# def home_view(request):
+#     return render(request,'main.html',{})
+# def auth_view(request):
+#     form=AuthenticationForm()
+#     if request.method=='POST':
+#         username=request.POST.get('usuername')
         
-            
-    
-        
+def verify_view(request):
+    form=CodeForm(request.POST or None)
+    pk=request.session.get('pk')
+    if pk:
+        user=User.objects.get(pk=pk)
+        code=user.code
+        code_user=f"{user.username}:{user.code}"
+        if not request.POST:
+            # send sms
+            print("code:"+code_user)
+            print("phone",user.phone_number)
+            send_sms(code_user,user.phone_number)
+        if form.is_valid():
+            num=form.cleaned_data.get('number')
 
-
+            if str(code)==num:
+                code.save()
+                auth.login(request,user)
+                return redirect('/')
+            else:
+                 return redirect('/login')
+    return render(request,'verify.html',{'form':form})
         
     
 
