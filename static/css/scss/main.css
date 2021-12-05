@@ -450,12 +450,6 @@
 
 .Profile__main {
   padding-top: 100px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 400px auto;
-      grid-template-columns: 400px auto;
-  grid-gap: 10px;
-  padding-left: 10%;
 }
 
 .Profile__main .Profile__Left .setting__header h4 {
