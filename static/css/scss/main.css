@@ -14,11 +14,6 @@
 }
 
 .Info {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: auto 600px 600px auto;
-      grid-template-columns: auto 600px 600px auto;
-  grid-gap: 10px;
   padding: 10px;
 }
 
@@ -35,11 +30,7 @@
 }
 
 .Info .__Item input {
-  width: 400px;
-}
-
-.Info .__Item select {
-  width: 200px;
+  width: 90%;
 }
 
 .Info .Info__Left img {
@@ -49,11 +40,6 @@
 }
 
 .Info .Info__Left {
-  -ms-grid-column: 2;
-      grid-column-start: 2;
-  grid-column-end: 3;
-  -ms-grid-row: 1;
-      grid-row-start: 1;
   margin-left: 0px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -62,7 +48,7 @@
 
 .Info .Info__Left .Your__Choose {
   border-radius: 15px;
-  background-color: #8C8EFF;
+  background-color: #8c8eff;
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -72,47 +58,26 @@
 }
 
 .Info .Info__Left .Your__Choose h4 {
-  -ms-grid-column: 1;
-      grid-column-start: 1;
-  grid-column-end: 4;
   text-align: center;
   -ms-grid-row: 1;
       grid-row-start: 1;
   color: white;
 }
 
-.Info .Info__Left .Your__Choose h6 {
-  -ms-grid-row: 2;
-      grid-row-start: 2;
-  text-align: center;
-  -ms-grid-column: 2;
-      grid-column-start: 2;
-  grid-column-end: 3;
-  padding-top: 20%;
-  padding-bottom: 20%;
-  padding-right: 20px;
-  padding-left: 20px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .Info .Info__Left .Your__Choose button {
-  -ms-grid-row: 2;
-      grid-row-start: 2;
   width: 150px;
   height: 40px;
   border-radius: 24px;
   background-color: white;
   color: blue;
+  margin: 0 auto;
+}
+
+.Info .Info__Left .Your__Choose a {
+  margin: auto;
 }
 
 .Info .Info__Right {
-  -ms-grid-column: 3;
-      grid-column-start: 3;
-  grid-column-end: 4;
-  -ms-grid-row: 1;
-      grid-row-start: 1;
   padding: 10px;
 }
 
@@ -125,9 +90,33 @@
   height: 100px;
 }
 
-@media screen and (max-width: 996px) {
-  .navbar-collapse {
-    display: none;
+@media only screen and (max-width: 300px) {
+  .Info__Left img {
+    height: 300px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Info__Left img {
+    height: 400px !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .Info__Left img {
+    height: 600px !important;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .Info__Left img {
+    height: 650px !important;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .Info__Left img {
+    height: 300px !important;
   }
 }
 
@@ -179,7 +168,7 @@
 }
 
 .Dog__Wrapper .arr__item .detail__btn {
-  width: 250px;
+  max-width: 250px;
   margin: 0 auto;
   padding: 10px 0;
 }
@@ -208,6 +197,9 @@
   }
   .your-class2 .arr__item img {
     width: 100%;
+  }
+  .detail__btn {
+    max-width: none !important;
   }
 }
 

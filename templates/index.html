@@ -28,39 +28,42 @@
         TINPETS
       </h1>
       </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
 
-      <div class=" navbar-collapse" id="navbarSupportedContent">
+      <div class=" collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav m-auto">
-            <a href="" style="text-decoration: none; color: black;">
-              <li class="nav-item mx-4">
+            <a class="nav-item" href="" style="text-decoration: none; color: black;">
+              <li class=" mx-4">
 
                 About us
               </li>
             </a>
          
-          <a href="/find?page=1"  style="text-decoration: none; color: black;">
-          <li class="nav-item mx-4">
+          <a class="nav-item" href="/find?page=1"  style="text-decoration: none; color: black;">
+          <li class=" mx-4">
             Find a pet
           </li>
           </a>
 
-          <a href="/breed?page=1"  style="text-decoration: none; color: black;">
-          <li class="nav-item mx-4">
+          <a class="nav-item" href="/breed?page=1"  style="text-decoration: none; color: black;">
+          <li class=" mx-4">
             Breeds
           </li>
           </a>
           {% if user.is_authenticated %}
-          <a href="/give"  style="text-decoration: none; color: black;">
+          <a class="nav-item" href="/give"  style="text-decoration: none; color: black;">
             
-          <li class="nav-item mx-4">
+          <li class=" mx-4">
             Upload pet
           </li>
           </a>
           {% else %}
-          <a href="/login"  style="text-decoration: none; color: black;">
+          <a class="nav-item" href="/login"  style="text-decoration: none; color: black;">
             
-            <li class="nav-item mx-4">
+            <li class=" mx-4">
               Upload Pet
             </li>
             </a>
@@ -74,18 +77,18 @@
         {% if user.is_authenticated %}
           
             <i class="mr-1 fa fa-user"></i>
-            <a href="/profile" style="text-decoration: none;color: black;">
+            <a class="nav-item" href="/profile" style="text-decoration: none;color: black;">
               <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
             </a>
             
-            <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
+            <a  href="/logout" class="btn  btn-outline-primary ml-3 nav-item">LOG OUT</a>
           
-          <!-- <a href="/logout">logout</a> -->
+          <!-- <a class="nav-item" href="/logout">logout</a> -->
         {% else %}
-        <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+        <a   href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary nav-item">
           SIGN IN
         </a>
-        <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+        <a  href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary nav-item">
           SIGN UP
         </a>   
         {% endif %}

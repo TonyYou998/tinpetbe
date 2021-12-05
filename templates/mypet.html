@@ -28,206 +28,215 @@
 <body>
     <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
         <a href="/" style="text-decoration: none; color: black;">
-        <h1 class="logo">
-          TINPETS
-        </h1>
+            <h1 class="logo">
+                TINPETS
+            </h1>
         </a>
-  
-  
+
+
         <div class=" navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav m-auto">
-              <a href="" style="text-decoration: none; color: black;">
-                <li class="nav-item mx-4">
-  
-                  About us
-                </li>
-              </a>
-           
-            <a href="/find?page=1"  style="text-decoration: none; color: black;">
-            <li class="nav-item mx-4">
-              Find a pet
-            </li>
-            </a>
-  
-            <a href="/breed?page=1"  style="text-decoration: none; color: black;">
-            <li class="nav-item mx-4">
-              Breeds
-            </li>
-            </a>
+            <ul class="navbar-nav m-auto">
+                <a href="" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+
+                        About us
+                    </li>
+                </a>
+
+                <a href="/find?page=1" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+                        Find a pet
+                    </li>
+                </a>
+
+                <a href="/breed?page=1" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+                        Breeds
+                    </li>
+                </a>
+                {% if user.is_authenticated %}
+                <a href="/give" style="text-decoration: none; color: black;">
+
+                    <li class="nav-item mx-4">
+                        Upload pet
+                    </li>
+                </a>
+                {% else %}
+                <a href="/login" style="text-decoration: none; color: black;">
+
+                    <li class="nav-item mx-4">
+                        Upload Pet
+                    </li>
+                </a>
+                {% endif %}
+
+
+            </ul>
+
+            <i class="mr-3  fa fa-shopping-cart "></i>
+
             {% if user.is_authenticated %}
-            <a href="/give"  style="text-decoration: none; color: black;">
-              
-            <li class="nav-item mx-4">
-              Upload pet
-            </li>
-            </a>
-            {% else %}
-            <a href="/login"  style="text-decoration: none; color: black;">
-              
-              <li class="nav-item mx-4">
-                Upload Pet
-              </li>
-              </a>
-              {% endif %}
-  
-  
-          </ul>
-  
-          <i class="mr-3  fa fa-shopping-cart "></i>
-          
-          {% if user.is_authenticated %}
-            
-              <i class="mr-1 fa fa-user"></i>
-              <a href="/profile" style="text-decoration: none;color: black;">
+
+            <i class="mr-1 fa fa-user"></i>
+            <a href="/profile" style="text-decoration: none;color: black;">
                 <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
-              </a>
-              
-              <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
-            
+            </a>
+
+            <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
+
             <!-- <a href="/logout">logout</a> -->
-          {% else %}
-          <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-            SIGN IN
-          </a>
-          <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-            SIGN UP
-          </a>   
-          {% endif %}
-         
-        </div>
-      </nav>
-    <div class="Profile__main">
-        <div class="Profile__Left">
-            <div class="setting__header">
-                <h4>Cài đặt</h4>
-            </div>
-            <hr>
-            <div class="setting__detail">
-                <div class="setting__general">
-                    <a href="/profile">
-                        <i class="fas fa-cog"></i>
-                        <span>Information</span>
-                    </a>
-
-                </div>
-                <!-- <div class="setting__pass">
-                    <a href="">
-                        <i class="fas fa-key"></i>
-                        <span>Thay đổi mật khẩu</span>
-                    </a>
-                </div> -->
-                <hr>
-                
-               
-                <hr>
-
-                <div class="setting__pet">
-                    <a href="/mypet">
-                        <i class="fas fa-paw"></i>
-                        <span>My Pets</span>
-                    </a>
-                </div>
-               
-
-            </div>
+            {% else %}
+            <a href="/login" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+                SIGN IN
+            </a>
+            <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+                SIGN UP
+            </a>
+            {% endif %}
 
         </div>
-        <div class="Profile__Right">
-            <h4>My Pets</h4>
-            <!-- <hr> -->
-            <div class="my__pets">
+    </nav>
+    <div class="container">
+        <div class="Profile__main row">
+            <div class="Profile__Left col-xl-5">
+                <div class="setting__header">
+                    <h4>Cài đặt</h4>
+                </div>
+                <hr>
+                <div class="setting__detail">
+                    <div class="setting__general">
+                        <a href="/profile">
+                            <i class="fas fa-cog"></i>
+                            <span>Information</span>
+                        </a>
+
+                    </div>
+                    <!-- <div class="setting__pass">
+                        <a href="">
+                            <i class="fas fa-key"></i>
+                            <span>Thay đổi mật khẩu</span>
+                        </a>
+                    </div> -->
+                    <hr>
 
 
-                <div class="table-responsive" style="height: 600px;overflow: auto;">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Age</th>
+                    <hr>
 
-                                <th class="text-center">Location</th>
-
-                                <th class="text-center">Type</th>
-                                <th class="text-center">Edit/Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for x in mypets %}
-                            <tr>
-                                <td class="text-right">
-                                    <img src="{{x.image.url}}" style="width: 80px;" height="60x" alt="">
-                                </td>
-                                <td class="text-center">
+                    <div class="setting__pet">
+                        <a href="/mypet">
+                            <i class="fas fa-paw"></i>
+                            <span>My Pets</span>
+                        </a>
+                    </div>
 
 
-                                    {{x.name}}
-                                </td>
-                                <td class="text-center">{{x.age}}</td>
+                </div>
 
-                                <td class="text-center">{{x.location}}</td>
+            </div>
+            <div class="Profile__Right col-xl-7">
+                <h4>My Pets</h4>
+                <!-- <hr> -->
+                <div class="my__pets">
 
-                                <td class="text-center">{{x.type}}</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                        data-target="#{{x.name}}">
-                                        Edit
-                                    </button>
-                                   
-                                    <a href="/mypet/delete/{{x.id}}" class="btn btn-danger">Delete</a>
-                                </td>
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="{{x.name}}" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                 <div class="modal-dialog" role="document">
-                                     <div class="modal-content">
-                                         <div class="modal-header">
-                                             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                             <button type="button" class="close" data-dismiss="modal"
-                                                 aria-label="Close">
-                                                 <span aria-hidden="true">&times;</span>
-                                             </button>
-                                         </div>
-                                         <div class="modal-body">
-                                             <form action="editpet/{{x.id}}" method="post">
-                                                {% csrf_token %}
-                                                 <div  class="form-group">
-                                                     <label for="name" class=" col-form-label">Pet Name</label>
-                                                     <input type="text" class="form-control" id="name" name="name" value="{{x.name}}">
-                                                 </div>
-                                                 <div  class="form-group">
-                                                    <label for="age" class=" col-form-label">Age</label>
-                                                    <input type="text" class="form-control" id="age" name="age" value="{{x.age}}">
+
+                    <div class="table-responsive" style="height: 600px;overflow: auto;">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Age</th>
+
+                                    <th class="text-center">Location</th>
+
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Edit/Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for x in mypets %}
+                                <tr>
+                                    <td class="text-right">
+                                        <img src="{{x.image.url}}" style="width: 80px;" height="60x" alt="">
+                                    </td>
+                                    <td class="text-center">
+
+
+                                        {{x.name}}
+                                    </td>
+                                    <td class="text-center">{{x.age}}</td>
+
+                                    <td class="text-center">{{x.location}}</td>
+
+                                    <td class="text-center">{{x.type}}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#{{x.name}}">
+                                            Edit
+                                        </button>
+
+                                        <a href="/mypet/delete/{{x.id}}" class="btn btn-danger">Delete</a>
+                                    </td>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="{{x.name}}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
-                                                <div  class="form-group">
-                                                    <label for="type" class=" col-form-label">type</label>
-                                                    <input type="text" class="form-control" id="type" name="type" value="{{x.type}}">
-                                                </div>
-                                                <div  class="form-group">
-                                                    <label for="location" class=" col-form-label">Location</label>
-                                                    <input type="text" class="form-control" id="location" name="location" value="{{x.location}}">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                             </form>
-                                             
-                                         </div>
-                                         
-                                     </div>
-                                 </div>
-                             </div>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                                <div class="modal-body">
+                                                    <form action="editpet/{{x.id}}" method="post">
+                                                        {% csrf_token %}
+                                                        <div class="form-group">
+                                                            <label for="name" class=" col-form-label">Pet Name</label>
+                                                            <input type="text" class="form-control" id="name"
+                                                                name="name" value="{{x.name}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="age" class=" col-form-label">Age</label>
+                                                            <input type="text" class="form-control" id="age" name="age"
+                                                                value="{{x.age}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="type" class=" col-form-label">type</label>
+                                                            <input type="text" class="form-control" id="type"
+                                                                name="type" value="{{x.type}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="location"
+                                                                class=" col-form-label">Location</label>
+                                                            <input type="text" class="form-control" id="location"
+                                                                name="location" value="{{x.location}}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
+                                                    </form>
 
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 

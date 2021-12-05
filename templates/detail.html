@@ -25,74 +25,74 @@
 
     <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
         <a href="/" style="text-decoration: none; color: black;">
-        <h1 class="logo">
-          TINPETS
-        </h1>
+            <h1 class="logo">
+                TINPETS
+            </h1>
         </a>
-  
-  
+
+
         <div class=" navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav m-auto">
-              <a href="" style="text-decoration: none; color: black;">
-                <li class="nav-item mx-4">
-  
-                  About us
-                </li>
-              </a>
-           
-            <a href="/find?page=1"  style="text-decoration: none; color: black;">
-            <li class="nav-item mx-4">
-              Find a pet
-            </li>
-            </a>
-  
-            <a href="/breed?page=1"  style="text-decoration: none; color: black;">
-            <li class="nav-item mx-4">
-              Breeds
-            </li>
-            </a>
+            <ul class="navbar-nav m-auto">
+                <a href="" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+
+                        About us
+                    </li>
+                </a>
+
+                <a href="/find?page=1" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+                        Find a pet
+                    </li>
+                </a>
+
+                <a href="/breed?page=1" style="text-decoration: none; color: black;">
+                    <li class="nav-item mx-4">
+                        Breeds
+                    </li>
+                </a>
+                {% if user.is_authenticated %}
+                <a href="/give" style="text-decoration: none; color: black;">
+
+                    <li class="nav-item mx-4">
+                        Upload pet
+                    </li>
+                </a>
+                {% else %}
+                <a href="/login" style="text-decoration: none; color: black;">
+
+                    <li class="nav-item mx-4">
+                        Upload Pet
+                    </li>
+                </a>
+                {% endif %}
+
+
+            </ul>
+
+            <i class="mr-3  fa fa-shopping-cart "></i>
+
             {% if user.is_authenticated %}
-            <a href="/give"  style="text-decoration: none; color: black;">
-              
-            <li class="nav-item mx-4">
-              Upload pet
-            </li>
-            </a>
-            {% else %}
-            <a href="/login"  style="text-decoration: none; color: black;">
-              
-              <li class="nav-item mx-4">
-                Upload Pet
-              </li>
-              </a>
-              {% endif %}
-  
-  
-          </ul>
-  
-          <i class="mr-3  fa fa-shopping-cart "></i>
-          
-          {% if user.is_authenticated %}
-            
-              <i class="mr-1 fa fa-user"></i>
-              <a href="/profile" style="text-decoration: none;color: black;">
+
+            <i class="mr-1 fa fa-user"></i>
+            <a href="/profile" style="text-decoration: none;color: black;">
                 <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
-              </a>
-              
-              <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
-            
+            </a>
+
+            <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
+
             <!-- <a href="/logout">logout</a> -->
-          {% else %}
-          <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-            SIGN IN
-          </a>
-          <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-            SIGN UP
-          </a>   
-          {% endif %}
-         
+            {% else %}
+            <a href="/login" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+                SIGN IN
+            </a>
+            <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
+                SIGN UP
+            </a>
+            {% endif %}
+
         </div>
-      </nav>
+    </nav>
 
     <div class="Header__introProduct">
         <h2>Product Infomation</h2>
@@ -102,8 +102,8 @@
     </div>
 
     <div class="Info">
-        
-        <div class="Info__Left">
+
+        <!-- <div class="Info__Left">
             <img src="{{pet.image.url}}" />
             <div class="Your__Choose">
                 <h4>Do you like it?</h4>
@@ -112,12 +112,11 @@
                     <button type="button" class="btnDetail">Contact Now</button>
                 </a>
                 
-                <!-- <h6>Or</h6>
-                <button type="button" class="btnDetail">Add to Cart</button> -->
+              
             </div>
         </div>
         <div class="Info__Right">
-            <!-- <h3>Pet Detail</h3> -->
+          
             <div class="__Item">
                 <span>Name: </span>
                 <input type="text" id="fname"  name="fname" value="{{pet.name}}" disabled>
@@ -166,11 +165,85 @@
                    <button class="btn btn-outline-primary mt-2" style="width: 100px;">submit</button>
                 </form>
             </div>
-        </div>
-        
-    </div>
-  
+        </div> -->
+        <div class="container">
+            <div class="row">
+                <div class="Info__Left col-xl-4 col-lg-5 col-md-12 ">
+                    <img src="{{pet.image.url}}" />
+                    <div class="Your__Choose">
+                        <h4>Do you like it?</h4>
+                       
+                            <!-- <div class="col-3"></div> -->
+                            
+                                <a href="/send?email={{pet.email}}&owner={{user.email}}">
+                                    <button type="button" class="btnDetail text-center">Contact Now</button>
+                                </a>
+                            
+                            <!-- <div class="col-3"></div> -->
+                        
     
+    
+                        <!-- <h6>Or</h6>
+                        <button type="button" class="btnDetail">Add to Cart</button> -->
+                    </div>
+                </div>
+                <div class="Info__Right col-xl-8 col-lg-7 col-md-12 ">
+                    <!-- <h3>Pet Detail</h3> -->
+                    <div class="__Item">
+                        <span>Name: </span>
+                        <input type="text" id="fname" name="fname" value="{{pet.name}}" disabled>
+                    </div>
+                    <hr />
+                    <div class="__Item">
+                        <span>Gender: </span>
+                        <input type="text" id="fname" name="fname" value="{{pet.gender}}" disabled>
+                    </div>
+                    <hr>
+                    <div class="__Item">
+                        <span>Age: </span>
+                        <input type="text" id="fname" value="{{pet.age}}" name="fname" disabled>
+                    </div>
+                    <hr />
+                    <div class="__Item">
+                        <span>Race: </span>
+                        <input type="text" id="fname" value="{{pet.race}}" disabled name="fname">
+                    </div>
+                    <hr>
+                    <div class="__Item">
+                        <span>Type: </span>
+                        <input type="text" id="fname" name="fname" value="{{pet.type}}" disabled>
+                    </div>
+                    <hr />
+    
+                    <hr>
+                    <div class="__Item">
+                        <span>Location: </span>
+                        <input type="text" id="fname" name="fname" value="{{pet.location}}" disabled>
+                    </div>
+                    <hr />
+    
+                    <hr />
+                    <div class="__Item">
+                        <span>Owner: </span>
+                        <input type="text" id="fname" name="fname" value="{{pet.owner}}" disabled>
+                    </div>
+                    <div class="container py-3">
+                        <h6>Leave A Comment</h6>
+                        <form action="/comment" method="post" class="comment__form">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{pet.id}}" name="id">
+                            {{form.body}}
+    
+                            <button class="btn btn-outline-primary mt-2" style="width: 100px;">submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+
+
     {% for x in comment %}
     <ul class="media-list container">
         <li class="media">
@@ -180,7 +253,7 @@
                 </span> -->
                 <strong class="text-success">@{{x.postBy}}</strong>
                 <p>
-                   {{x.body}}
+                    {{x.body}}
                 </p>
             </div>
         </li>

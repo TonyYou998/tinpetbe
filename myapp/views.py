@@ -315,6 +315,8 @@ def comment(request):
         
 def verify_view(request):
     form=CodeForm(request.POST or None)
+   
+   
     pk=request.session.get('pk')
     if pk:
         user=User.objects.get(pk=pk)
@@ -322,19 +324,22 @@ def verify_view(request):
         code_user=f"{user.username}:{user.code}"
         if not request.POST:
             # send sms
-            print("code:"+code_user)
-            print("phone",user.phone_number)
+            
             send_sms(code_user,user.phone_number)
-        if form.is_valid():
-            num=form.cleaned_data.get('number')
-
+        if request.POST:
+            # num=form.cleaned_data.get('number')
+            num=request.POST['code']
+           
             if str(code)==num:
+              
+              
                 code.save()
                 auth.login(request,user)
                 return redirect('/')
             else:
-                 return redirect('/login')
-    return render(request,'verify.html',{'form':form})
+                messages.info(request,"Your code was wrong,please try again")
+                return redirect('verify_view')
+    return render(request,'verify.html')
         
     
 

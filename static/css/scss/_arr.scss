@@ -13,7 +13,7 @@
         }
         .detail__btn{
             
-            width: 250px;
+            max-width: 250px;
             margin: 0 auto;
             padding: 10px 0;
         }
@@ -46,6 +46,9 @@
                 width: 100%;
             }
         }
+    }
+    .detail__btn{
+        max-width: none !important;
     }
     
 }
