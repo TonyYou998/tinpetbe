@@ -1,117 +1,130 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>
-    </title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/scss/main.css' %}">
-  </head>
-  <body style="background-color: #eee7de;">
-    <div >
-      <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
-        <a href="/" style="text-decoration: none; color: black;">
+<head>
+  <title>
+  </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/scss/main.css' %}">
+</head>
+
+<body style="background-color: #eee7de;">
+  <div>
+    <nav class="navbar navbar__change w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
+      <a href="/" style="text-decoration: none; color: black;">
         <h1 class="logo">
           TINPETS
         </h1>
-        </a>
-  
-  
-        <div class=" navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav m-auto">
-              <a href="" style="text-decoration: none; color: black;">
-                <li class="nav-item mx-4">
-  
-                  About us
-                </li>
-              </a>
-           
-            <a href="/find?page=1"  style="text-decoration: none; color: black;">
-            <li class="nav-item mx-4">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class=" collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav m-auto">
+          <a class="nav-item" href="" style="text-decoration: none; color: black;">
+            <li class=" mx-4">
+
+              About us
+            </li>
+          </a>
+
+          <a class="nav-item" href="/find?page=1" style="text-decoration: none; color: black;">
+            <li class=" mx-4">
               Find a pet
             </li>
-            </a>
-  
-            <a href="/breed?page=1"  style="text-decoration: none; color: black;">
-            <li class="nav-item mx-4">
+          </a>
+
+          <a class="nav-item" href="/breed?page=1" style="text-decoration: none; color: black;">
+            <li class=" mx-4">
               Breeds
             </li>
-            </a>
-            {% if user.is_authenticated %}
-            <a href="/give"  style="text-decoration: none; color: black;">
-              
-            <li class="nav-item mx-4">
+          </a>
+          {% if user.is_authenticated %}
+          <a class="nav-item" href="/give" style="text-decoration: none; color: black;">
+
+            <li class=" mx-4">
               Upload pet
             </li>
-            </a>
-            {% else %}
-            <a href="/login"  style="text-decoration: none; color: black;">
-              
-              <li class="nav-item mx-4">
-                Upload Pet
-              </li>
-              </a>
-              {% endif %}
-  
-  
-          </ul>
-  
-          <i class="mr-3  fa fa-shopping-cart "></i>
-          
-          {% if user.is_authenticated %}
-            
-              <i class="mr-1 fa fa-user"></i>
-              <a href="/profile" style="text-decoration: none;color: black;">
-                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
-              </a>
-              
-              <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
-            
-            <!-- <a href="/logout">logout</a> -->
-          {% else %}
-          <a  href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-            SIGN IN
           </a>
-          <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-            SIGN UP
-          </a>   
+          {% else %}
+          <a class="nav-item" href="/login" style="text-decoration: none; color: black;">
+
+            <li class=" mx-4">
+              Upload Pet
+            </li>
+          </a>
           {% endif %}
-         
-        </div>
-      </nav>
-        <div class="findapet__wrapper ">
-            <h3 class="text-center">Browse all pet </h3>
-          <div class="container">
-            <form method="post" action="find" class="row searchFilter" >
-              {% csrf_token %}
-              <div class="w-100" >
-               <div class="input-group" >
-                <input name="name"  type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
-                <div class="input-group-btn" >
-                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ><span class="label-icon" >Race</span> <span class="caret" >&nbsp;</span></button>
-                 <div class="dropdown-menu dropdown-menu-right" >
-                    <ul class="category_filters" style="list-style: none;text-align: left;" >
-                      <li >
-                        <input class="cat_type category-input" data-label="All" id="all" value="A"  name="race" type="radio" checked="checked" ><label for="all" >All</label>
-                       </li>
-                     <li >
-                      <input class="cat_type category-input" data-label="All" id="all" value="D" name="race" type="radio" ><label for="all" >Dog</label>
-                     </li>
-                     <li >
-                      <input type="radio" name="race" id="Design" value="C" ><label class="category-label" for="Design" >Cat</label>
-                     </li>
-                     <li >
-                        <input type="radio" name="race" id="Design" value="O" ><label class="category-label" for="Design" >Others</label>
-                     </li>
-                   
-                    </ul>
-                 </div>
-                 <!-- <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ><span class="label-icon" >Sex</span> <span class="caret" >&nbsp;</span></button>
+
+
+        </ul>
+
+        <i class="mr-3  fa fa-shopping-cart "></i>
+
+        {% if user.is_authenticated %}
+
+        <i class="mr-1 fa fa-user"></i>
+        <a class="nav-item" href="/profile" style="text-decoration: none;color: black;">
+          <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+        </a>
+
+        <a href="/logout" class="btn  btn-outline-primary ml-3 nav-item">LOG OUT</a>
+
+        <!-- <a class="nav-item" href="/logout">logout</a> -->
+        {% else %}
+        <a href="/login" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary nav-item">
+          SIGN IN
+        </a>
+        <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary nav-item">
+          SIGN UP
+        </a>
+        {% endif %}
+
+      </div>
+    </nav>
+    <div class="findapet__wrapper ">
+      <h3 class="text-center">Browse all pet </h3>
+      <div class="container">
+        <form method="post" action="find" class="row searchFilter">
+          {% csrf_token %}
+          <div class="w-100">
+            <div class="input-group">
+              <input name="name" type="text" class="form-control"
+                aria-label="Text input with segmented button dropdown">
+              <div class="input-group-btn">
+                <!-- <button  type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown"><span class="label-icon">Race</span> <span class="caret">&nbsp;</span></button> -->
+                <div class="dropdown-menu dropdown-menu-right">
+                  <!-- <ul class="category_filters" style="list-style: none;text-align: left;">
+                    <li>
+                      <input class="cat_type category-input" data-label="All" id="all" value="A" name="race"
+                        type="radio" checked="checked"><label for="all">All</label>
+                    </li>
+                    <li>
+                      <input class="cat_type category-input" data-label="All" id="all" value="D" name="race"
+                        type="radio"><label for="all">Dog</label>
+                    </li>
+                    <li>
+                      <input type="radio" name="race" id="Design" value="C"><label class="category-label"
+                        for="Design">Cat</label>
+                    </li>
+                    <li>
+                      <input type="radio" name="race" id="Design" value="O"><label class="category-label"
+                        for="Design">Others</label>
+                    </li>
+
+                  </ul> -->
+                </div>
+                <!-- <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ><span class="label-icon" >Sex</span> <span class="caret" >&nbsp;</span></button>
                  <div class="dropdown-menu dropdown-menu-right" >
                     <ul class="category_filters" style="list-style: none;text-align: left;" >
                       <li >
@@ -129,54 +142,62 @@
                    
                     </ul>
                  </div> -->
-                 <button  type="submit" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
-                 <a class="btn btn-primary" href="/find?page=1">reset</a>
-                </div>
-               </div>
+                <button type="submit" class="btn btn-secondary btn-search"><span
+                    class="glyphicon glyphicon-search">&nbsp;</span> <span class="label-icon">Search</span></button>
+                <a class="btn btn-primary" href="/find?page=1">reset</a>
               </div>
-           </form>
-            <div class="row">
-                {% for x in pets.object_list %}
-               
-                <div class="item__wrapper  col-sm-6 col-md-4 col-xl-3 pt-3 pt-3">
-                    <img class="item__img w-100" src="{{ x.image.url }}" alt=""/>
-                    <div class="item__content">
-                        <a href="/detail/{{x.id}}">
-                        <h6 class="py-2 btn btn-primary w-100" >{{ x.name }}</h6>
-                        </a>
-                       
-                        
-                    </div>
-                </div>
-                
-                {% endfor %}
             </div>
-            <div class="page_link text-right py-3" >
-              {% if pets.has_previous %}
-              <a href="?page={{pets.previous_page_number}}" style="color: black;">  Previous Page </a>
-              {%  endif %}
-              {% if pets.has_next %}
-              <a href="?page={{pets.next_page_number}}" style="color: black;">  Next Page</a>
-              {% endif %}
-           </div>
           </div>
-        </div>
-    </div>  
+        </form>
+        <div class="row">
+          {% for x in pets.object_list %}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
-        $(window).scroll(()=>{
-        if($(window).scrollTop()>100){
-            $(".navbar").addClass("navbar__change");
-        }
-        else{
-            $(".navbar__change").removeClass("navbar__change");
-        }
-        })  
-      </script>
-  </body>
+          <div class="item__wrapper  col-sm-6 col-md-4 col-xl-3 pt-3 pt-3">
+            <img class="item__img w-100" src="{{ x.image.url }}" alt="" />
+            <div class="item__content">
+              <a href="/detail/{{x.id}}">
+                <h6 class="py-2 btn btn-primary w-100">{{ x.name }}</h6>
+              </a>
+
+
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+        <div class="page_link text-right py-3">
+          {% if pets.has_previous %}
+          <a href="?page={{pets.previous_page_number}}" style="color: black;"> Previous Page </a>
+          {% endif %}
+          {% if pets.has_next %}
+          <a href="?page={{pets.next_page_number}}" style="color: black;"> Next Page</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script>
+    // $(window).scroll(() => {
+    //   if ($(window).scrollTop() > 100) {
+    //     $(".navbar").addClass("navbar__change");
+    //   }
+    //   else {
+    //     $(".navbar__change").removeClass("navbar__change");
+    //   }
+    // })
+  </script>
+</body>
+
 </html>

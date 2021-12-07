@@ -22,7 +22,7 @@
 
 <body>
   <div>
-    <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar__change w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
       <a href="/" style="text-decoration: none; color: black;">
       <h1 class="logo">
         TINPETS
@@ -344,14 +344,14 @@
   <script src="{% static 'js/slick.min.js' %}"></script>
   <script src="{% static 'js/style.js' %}"></script>
   <script>
-      $(window).scroll(()=>{
-          if($(window).scrollTop()>100){
-              $(".navbar").addClass("navbar__change");
-          }
-          else{
-              $(".navbar__change").removeClass("navbar__change");
-          }
-      })
+      // $(window).scroll(()=>{
+      //     if($(window).scrollTop()>100){
+      //         $(".navbar").addClass("navbar__change");
+      //     }
+      //     else{
+      //         $(".navbar__change").removeClass("navbar__change");
+      //     }
+      // })
   </script>
 </body>
 

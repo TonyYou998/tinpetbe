@@ -51,6 +51,7 @@ def register(request):
         username=request.POST['username']
         email=request.POST['email']
         phone=request.POST['phone']
+        phone=phone[1:]
         print("phone"+phone)
         password=request.POST['password']
         repassword=request.POST['repassword']
@@ -131,20 +132,15 @@ def find(request):
         return render(request,'find.html',{'pets':page})
     else:
         name=request.POST['name']
-        race=request.POST['race']
-        print(name,race)
-        if race=="" or race=="A":
-            
-            pet=Pet.objects.all().filter( purpose='G',name=name)
-            print(pet)
-        elif name=="":
-             pet=Pet.objects.all().filter( purpose='G',race=race)
+        # race=request.POST['race']
        
-        else :
-            pet=Pet.objects.all().filter( purpose='G',name=name,race=race)
-            pet_paginator=Paginator(pet,8)
-            page=pet_paginator.get_page(1)
-   
+      
+        pet=Pet.objects.all().filter( purpose='Give',name=name)
+           
+       
+        pet_paginator=Paginator(pet,8)
+        page=pet_paginator.get_page(1)
+       
     return render(request,'find.html',{'pets':page})
     
 
@@ -264,6 +260,7 @@ def editUser(request,pk):
         email=request.POST['email']
         firstName=request.POST['firstName']
         lastName=request.POST['lastName']
+        phone=request.POST['phone']
         
         user=User.objects.get(id=pk)
         if user.username != username:
@@ -274,6 +271,7 @@ def editUser(request,pk):
         user.email=email
         user.first_name=firstName
         user.last_name=lastName
+        user.phone_number=phone
         user.save()
         return redirect("/profile")
     else:

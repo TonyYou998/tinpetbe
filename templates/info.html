@@ -25,80 +25,83 @@
 <body>
     <nav class="navbar w-100 px-4 navbar__fix navbar-expand-lg navbar-light ">
         <a href="/" style="text-decoration: none; color: black;">
-            <h1 class="logo">
-                TINPETS
-            </h1>
+        <h1 class="logo">
+          TINPETS
+        </h1>
         </a>
-
-
-        <div class=" navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav m-auto">
-                <a href="" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-
-                        About us
-                    </li>
-                </a>
-
-                <a href="/find?page=1" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-                        Find a pet
-                    </li>
-                </a>
-
-                <a href="/breed?page=1" style="text-decoration: none; color: black;">
-                    <li class="nav-item mx-4">
-                        Breeds
-                    </li>
-                </a>
-                {% if user.is_authenticated %}
-                <a href="/give" style="text-decoration: none; color: black;">
-
-                    <li class="nav-item mx-4">
-                        Upload pet
-                    </li>
-                </a>
-                {% else %}
-                <a href="/login" style="text-decoration: none; color: black;">
-
-                    <li class="nav-item mx-4">
-                        Upload Pet
-                    </li>
-                </a>
-                {% endif %}
-
-
-            </ul>
-
-            <i class="mr-3  fa fa-shopping-cart "></i>
-
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+  
+        <div class=" collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav m-auto">
+              <a class="nav-item" href="" style="text-decoration: none; color: black;">
+                <li class=" mx-4">
+  
+                  About us
+                </li>
+              </a>
+           
+            <a class="nav-item" href="/find?page=1"  style="text-decoration: none; color: black;">
+            <li class=" mx-4">
+              Find a pet
+            </li>
+            </a>
+  
+            <a class="nav-item" href="/breed?page=1"  style="text-decoration: none; color: black;">
+            <li class=" mx-4">
+              Breeds
+            </li>
+            </a>
             {% if user.is_authenticated %}
-
-            <i class="mr-1 fa fa-user"></i>
-            <a href="/profile" style="text-decoration: none;color: black;">
-                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+            <a class="nav-item" href="/give"  style="text-decoration: none; color: black;">
+              
+            <li class=" mx-4">
+              Upload pet
+            </li>
             </a>
-
-            <a href="/logout" class="btn  btn-outline-primary ml-3">LOG OUT</a>
-
-            <!-- <a href="/logout">logout</a> -->
             {% else %}
-            <a href="/login" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-                SIGN IN
-            </a>
-            <a href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary">
-                SIGN UP
-            </a>
-            {% endif %}
-
+            <a class="nav-item" href="/login"  style="text-decoration: none; color: black;">
+              
+              <li class=" mx-4">
+                Upload Pet
+              </li>
+              </a>
+              {% endif %}
+  
+  
+          </ul>
+  
+          <i class="mr-3  fa fa-shopping-cart "></i>
+          
+          {% if user.is_authenticated %}
+            
+              <i class="mr-1 fa fa-user"></i>
+              <a class="nav-item" href="/profile" style="text-decoration: none;color: black;">
+                <h5 style="margin-bottom: 0;"> {{user.username}} </h5>
+              </a>
+              
+              <a  href="/logout" class="btn  btn-outline-primary ml-3 nav-item">LOG OUT</a>
+            
+            <!-- <a class="nav-item" href="/logout">logout</a> -->
+          {% else %}
+          <a   href="/login"  class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary nav-item">
+            SIGN IN
+          </a>
+          <a  href="/register" class="  ml-2 ml-2 px-4 login__btn btn  btn-outline-primary nav-item">
+            SIGN UP
+          </a>   
+          {% endif %}
+         
         </div>
-    </nav>
+      </nav>
     <div class="container">
         <div class="Profile__main  row  mr-0">
         
             <div class="Profile__Left col-12 col-md-3 col-xl-4">
                 <div class="setting__header">
-                    <h4>Cài đặt</h4>
+                    <h4>Setting</h4>
                 </div>
                 <hr>
                 <div class="setting__detail">
@@ -161,6 +164,8 @@
                             <input class="w-100" type="text" value="{{user.first_name}}" name="fname" disabled>
                             <span>Last Name: </span>
                             <input class="w-100" type="text" value="{{user.last_name}}" name="fname" disabled>
+                            <span>Phone: </span>
+                            <input class="w-100" type="text" value="{{user.phone_number}}" name="fname" disabled>
 
                             <span>Pets: </span>
                             <input class="w-100" type="text" value={{number}} name="fname" disabled>
@@ -203,6 +208,11 @@
                                                 <label for="age" class=" col-form-label">First Name</label>
                                                 <input type="text" class="form-control" id="age" name="lastName"
                                                     value="{{user.last_name}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="age" class=" col-form-label">Phone</label>
+                                                <input type="text" class="form-control" id="age" name="phone"
+                                                    value="{{user.phone_number}}">
                                             </div>
 
                                             <div class="modal-footer">
